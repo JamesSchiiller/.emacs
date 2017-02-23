@@ -1,22 +1,13 @@
-;; tabs
-(setq default-tab-width 2)
+File Edit Options Buffers Tools Emacs-Lisp Help
+(setq default-tab-width 2) ;; tabs
 (global-set-key (kbd "TAB") 'self-insert-command)
 
 (require 'package)
-(add-to-list 'package-archives
-						 '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;; neotree
-;(add-to-list 'load-path "/home/james/.emacs.d/elpa/neotree-20160306.730/")
-;(require 'neotree)
-;(setq inferior-lisp-program "/usr/bin/sbcl")
-;(global-set-key [f8] 'neotree-toggle)
+(setq inferior-lisp-program "/usr/bin/sbcl") ;; set lisp location
 
-;; set lisp location
-(setq inferior-lisp-program "/usr/bin/sbcl")
-
-;; switch windows form horizontal split to vertical and v.v.
-(defun toggle-window-split ()
+(defun toggle-window-split () ;; switch windows form horizontal split to vertical and v.v.
 	(interactive)
 	(if (= (count-windows) 2)
 			(let* ((this-win-buffer (window-buffer))
@@ -42,8 +33,7 @@
 					(if this-win-2nd (other-window 1))))))
 (global-set-key (kbd "C-x |") 'toggle-window-split)
 
-;; switch windows easily, allow c x up/down/left/right arrows:
-(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <up>") 'windmove-up) ;; switch windows easily, allow c x up/down/left/right arrows
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
@@ -53,3 +43,4 @@
 (when (< emacs-major-version 24)
 	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
+
