@@ -1,4 +1,3 @@
-File Edit Options Buffers Tools Emacs-Lisp Help
 (setq default-tab-width 2) ;; tabs
 (global-set-key (kbd "TAB") 'self-insert-command)
 
@@ -9,20 +8,20 @@ File Edit Options Buffers Tools Emacs-Lisp Help
 
 (defun toggle-window-split () ;; switch windows form horizontal split to vertical and v.v.
 	(interactive)
-	(if (= (count-windows) 2)
+		(if (= (count-windows) 2)
 			(let* ((this-win-buffer (window-buffer))
-						 (next-win-buffer (window-buffer (next-window)))
-						 (this-win-edges (window-edges (selected-window)))
-						 (next-win-edges (window-edges (next-window)))
-						 (this-win-2nd (not (and (<= (car this-win-edges)
-																				 (car next-win-edges))
-																		 (<= (cadr this-win-edges)
-																				 (cadr next-win-edges)))))
-						 (splitter
-							(if (= (car this-win-edges)
-										 (car (window-edges (next-window))))
-									'split-window-horizontally
-								'split-window-vertically)))
+				(next-win-buffer (window-buffer (next-window)))
+				(this-win-edges (window-edges (selected-window)))
+				(next-win-edges (window-edges (next-window)))
+				(this-win-2nd (not (and (<= (car this-win-edges)
+					(car next-win-edges))
+						(<= (cadr this-win-edges)
+					(cadr next-win-edges)))))
+				(splitter
+				(if (= (car this-win-edges)
+					(car (window-edges (next-window))))
+						'split-window-horizontally
+						'split-window-vertically)))
 				(delete-other-windows)
 				(let ((first-win (selected-window)))
 					(funcall splitter)
@@ -43,4 +42,3 @@ File Edit Options Buffers Tools Emacs-Lisp Help
 (when (< emacs-major-version 24)
 	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
-
